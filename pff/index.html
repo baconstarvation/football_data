@@ -29,7 +29,7 @@
 								text-transform: uppercase;
 								float: left;
 				}
-				.age-label {
+				.category-label {
 								text-align: right;
 								font-weight: bold;
 								width: 90px;
@@ -97,7 +97,7 @@
 				.orient("left");
 
 		function keys(d) {
-				return d.age;
+				return d.category;
 		}
 
 		body.append("h2")
@@ -123,9 +123,9 @@
 				.attr("class", "clearfix")
 
 		body.append("div")
-				.attr("class", "top-label age-label")
+				.attr("class", "top-label category-label")
 			.append("p")
-				.text("age group");
+				.text("football category");
 
 		body.append("div")
 				.attr("class", "top-label")
@@ -141,7 +141,7 @@
 
 			x.domain([0, d3.max(data, function(d) { return d.value; })]);
 
-			y.domain(popData.map(function(d) { return d.age; }));
+			y.domain(popData.map(function(d) { return d.category; }));
 
 			var svg = body.append("svg")
 					.attr("width", width + margin.left + margin.right)
@@ -154,7 +154,7 @@
 				.enter().append("rect")
 					.attr("class", "bar")
 					.attr("x", 0)
-					.attr("y", function(d) { return y(d.age)})
+					.attr("y", function(d) { return y(d.category)})
 					.attr("width", function(d) { return x(d.value); })
 					.attr("height", y.rangeBand());
 
