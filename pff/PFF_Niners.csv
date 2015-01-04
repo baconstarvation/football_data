@@ -1,26 +1,25 @@
 year,category,value
-2007,off,-132.7
-2007,def,14.7
-2007,spec,-4.4
-2008,off,-63.4
-2008,def,12.4
-2008,spec,6.7
-2009,off,-14
-2009,def,56.7
-2009,spec,39
-2010,off,-5.6
-2010,def,101.8
-2010,spec,-5.7
-2011,off,19.5
-2011,def,217.7
-2011,spec,81.4
-2012,off,275.1
-2012,def,107.1
-2012,spec,45.8
-2013,off,65.6
-2013,def,116
-2013,spec,32.9
-2014,off,-10.5
-2014,def,50
-2014,spec,3.7
-
+2007,Offense,-132.7
+2007,Defense,14.7
+2007,Special Teams,-4.4
+2008,Offense,-63.4
+2008,Defense,12.4
+2008,Special Teams,6.7
+2009,Offense,-14
+2009,Defense,56.7
+2009,Special Teams,39
+2010,Offense,-5.6
+2010,Defense,101.8
+2010,Special Teams,-5.7
+2011,Offense,19.5
+2011,Defense,217.7
+2011,Special Teams,81.4
+2012,Offense,275.1
+2012,Defense,107.1
+2012,Special Teams,45.8
+2013,Offense,65.6
+2013,Defense,116
+2013,Special Teams,32.9
+2014,Offense,-10.5
+2014,Defense,50
+2014,Special Teams,3.7
