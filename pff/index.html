@@ -21,7 +21,10 @@
 								display: none;
 				}
 				.y.axis line {
-								display:none;
+								display: none;
+				}
+				.y.axis text {
+								font-size: 13px;
 				}
 				.top-label {
 								font-size: 13px;
@@ -135,7 +138,7 @@
 		body.append("div")
 				.attr("class", "clearfix");
 
-		d3.csv("PFF_Niners.csv", function(error, data) {
+		d3.csv("pff_niners.csv", function(error, data) {
 
 			var popData = data.filter(function(element) {return element.year == year});
 
