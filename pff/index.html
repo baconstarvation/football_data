@@ -140,11 +140,11 @@
 
 		d3.csv("pff_niners.csv", function(error, data) {
 
-			var popData = data.filter(function(element) {return element.year == year});
+			var pffData = data.filter(function(element) {return element.year == year});
 
 			x.domain([0, d3.max(data, function(d) { return d.value; })]);
 
-			y.domain(popData.map(function(d) { return d.category; }));
+			y.domain(pffData.map(function(d) { return d.category; }));
 
 			var svg = body.append("svg")
 					.attr("width", width + margin.left + margin.right)
@@ -153,7 +153,7 @@
 					.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 			var bars = svg.selectAll("rect")
-					.data(popData, keys)
+					.data(pffData, keys)
 				.enter().append("rect")
 					.attr("class", "bar")
 					.attr("x", 0)
@@ -200,9 +200,9 @@
 						.filter(function(d) { return d == updateYear; })
 						.classed("selected", true);	
 
-					popData = data.filter(function(element) {return element.year == updateYear});
+					pffData = data.filter(function(element) {return element.year == updateYear});
 
-					bars.data(popData, keys)
+					bars.data(pffData, keys)
 						.transition()
 						.duration(500)
 						.attr("width", function(d) { return x(d.value)
