@@ -5,6 +5,7 @@
 <style>
 				body {
 								font-family: Helvetica;
+								color: #A05F64
 				}
 				svg {
 								width: 500px;
@@ -16,6 +17,7 @@
 				}
 				.x.axis text {
 								font-size: 13px;
+								fill: #A05F64;
 				}
 				.axis path {
 								display: none;
@@ -25,12 +27,14 @@
 				}
 				.y.axis text {
 								font-size: 13px;
+								fill: #A05F64;
 				}
 				.top-label {
 								font-size: 13px;
 								font-style: italic;
 								text-transform: uppercase;
 								float: left;
+								color: #A05F64;
 				}
 				.category-label {
 								text-align: right;
@@ -42,7 +46,7 @@
 								clear: both;
 				}
 				.bar {
-								fill: DarkSlateBlue;
+								fill: #A79070;
 				}
 				.buttons-container {
 								width: 520px;
@@ -62,10 +66,10 @@
 							margin-bottom: 15px;
 							font-style: italic;
 							cursor: pointer;
-							color: grey;
+							color: #A79070;
 				}
 				.play-button:hover {
-							color: black;
+							color: #A05F64;
 				}
 </style>
 </head>
@@ -93,7 +97,7 @@
 		var xAxis = d3.svg.axis()
 				.scale(x)
 				.orient("top")
-				.ticks(4);
+				.ticks(7);
 
 		var yAxis = d3.svg.axis()
 				.scale(y)
@@ -104,7 +108,7 @@
 		}
 
 		body.append("h2")
-				.text("49ers Graded Performance Distribution, " + year);
+				.text("49ers Graded Performance Distribution");
 
 		var playAll = body.append("div")
 				.attr("class", "play-button")
@@ -142,7 +146,7 @@
 
 			var pffData = data.filter(function(element) {return element.year == year});
 
-			x.domain([0, d3.max(data, function(d) { return d.value; })]);
+			x.domain([-150, 280]);
 
 			y.domain(pffData.map(function(d) { return d.category; }));
 
