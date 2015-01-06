@@ -142,7 +142,7 @@
 		body.append("div")
 				.attr("class", "clearfix");
 
-		d3.csv("pff_niners.csv", function(error, data) {
+		d3.csv("https://dl.dropboxusercontent.com/u/18958141/pff-data/pff_niners.csv", function(error, data) {
 
 			var pffData = data.filter(function(element) {return element.year == year});
 
