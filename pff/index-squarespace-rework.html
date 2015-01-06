@@ -1,211 +1,213 @@
-<style>
-				body {
-								font-family: Helvetica;
-								color: #A05F64
-				}
-				svg {
-								width: 500px;
-								height: 500px;
-				}
-				.x.axis line {
-								fill: none;
-								stroke: #000;
+<div class="mydiv">
+	<style>
+					body {
+									font-family: Helvetica;
+									color: #A05F64
+					}
+					svg {
+									width: 500px;
+									height: 500px;
+					}
+					.x.axis line {
+									fill: none;
+									stroke: #000;
 
-				}
-				.x.axis text {
-								font-size: 13px;
-								fill: #A05F64;
-				}
-				.axis path {
-								display: none;
-				}
-				.y.axis line {
-								display: none;
-				}
-				.y.axis text {
-								font-size: 13px;
-								fill: #A05F64;
-				}
-				.top-label {
-								font-size: 13px;
-								font-style: italic;
-								text-transform: uppercase;
-								float: left;
-								color: #A05F64;
-				}
-				.category-label {
-								text-align: right;
+					}
+					.x.axis text {
+									font-size: 13px;
+									fill: #A05F64;
+					}
+					.axis path {
+									display: none;
+					}
+					.y.axis line {
+									display: none;
+					}
+					.y.axis text {
+									font-size: 13px;
+									fill: #A05F64;
+					}
+					.top-label {
+									font-size: 13px;
+									font-style: italic;
+									text-transform: uppercase;
+									float: left;
+									color: #A05F64;
+					}
+					.category-label {
+									text-align: right;
+									font-weight: bold;
+									width: 90px;
+									padding-right: 10px;
+					}
+					.clearfix {
+									clear: both;
+					}
+					.bar {
+									fill: #A79070;
+					}
+					.buttons-container {
+									width: 520px;
+									margin-bottom: 15px;
+					}
+					.button {
+									float: left;
+									margin-left: 10px;
+									font-weight: lighter;
+									cursor: pointer;
+					}
+					.selected {
 								font-weight: bold;
-								width: 90px;
-								padding-right: 10px;
-				}
-				.clearfix {
-								clear: both;
-				}
-				.bar {
-								fill: #A79070;
-				}
-				.buttons-container {
-								width: 520px;
-								margin-bottom: 15px;
-				}
-				.button {
-								float: left;
+					}
+					.play-button {
 								margin-left: 10px;
-								font-weight: lighter;
+								margin-bottom: 15px;
+								font-style: italic;
 								cursor: pointer;
-				}
-				.selected {
-							font-weight: bold;
-				}
-				.play-button {
-							margin-left: 10px;
-							margin-bottom: 15px;
-							font-style: italic;
-							cursor: pointer;
-							color: #A79070;
-				}
-				.play-button:hover {
-							color: #A05F64;
-				}
-</style>
+								color: #A79070;
+					}
+					.play-button:hover {
+								color: #A05F64;
+					}
+	</style>
 
-<script src="http://d3js.org/d3.v3.js"></script>
-<script type="text/javascript">
+	<script src="http://d3js.org/d3.v3.js"></script>
+	<script type="text/javascript">
 
-	var buttonYears = [2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014];
+		var buttonYears = [2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014];
 
-	var year = 2014;
+		var year = 2014;
 
-	var margin = {top: 30, right: 0, bottom: 0, left: 100},
-		width = 450 - margin.left - margin.right,
-		height = 225 - margin.top - margin.bottom;
+		var margin = {top: 30, right: 0, bottom: 0, left: 100},
+			width = 450 - margin.left - margin.right,
+			height = 225 - margin.top - margin.bottom;
 
-	var body = d3.select("body");
+		var body = d3.select(".mydiv");
 
-	var x = d3.scale.linear()
-			.range([0, width]);
+		var x = d3.scale.linear()
+				.range([0, width]);
 
-	var y = d3.scale.ordinal()
-			.rangeBands([0, height], 0.2, 0);
+		var y = d3.scale.ordinal()
+				.rangeBands([0, height], 0.2, 0);
 
-	var xAxis = d3.svg.axis()
-			.scale(x)
-			.orient("top")
-			.ticks(7);
+		var xAxis = d3.svg.axis()
+				.scale(x)
+				.orient("top")
+				.ticks(7);
 
-	var yAxis = d3.svg.axis()
-			.scale(y)
-			.orient("left");
+		var yAxis = d3.svg.axis()
+				.scale(y)
+				.orient("left");
 
-	function keys(d) {
-			return d.category;
-	}
+		function keys(d) {
+				return d.category;
+		}
 
-	body.append("h2")
-			.text("49ers Graded Performance Distribution");
+		body.append("h2")
+				.text("49ers Graded Performance Distribution");
 
-	var playAll = body.append("div")
-			.attr("class", "play-button")
-			.text("PLAY ALL YEARS");
+		var playAll = body.append("div")
+				.attr("class", "play-button")
+				.text("PLAY ALL YEARS");
 
-	var buttons = body.append("div")
-			.attr("class", "buttons-container")
-			.selectAll("div").data(buttonYears)
-		.enter().append("div")
-			.text(function(d) { return d; })
-			.attr("class", function(d) {
-					if(d == year)
-						return "button selected";
-					else
-						return "button";
+		var buttons = body.append("div")
+				.attr("class", "buttons-container")
+				.selectAll("div").data(buttonYears)
+			.enter().append("div")
+				.text(function(d) { return d; })
+				.attr("class", function(d) {
+						if(d == year)
+							return "button selected";
+						else
+							return "button";
+				});
+
+		body.append("div")
+				.attr("class", "clearfix")
+
+		body.append("div")
+				.attr("class", "top-label category-label")
+			.append("p")
+				.text("Side of the Ball");
+
+		body.append("div")
+				.attr("class", "top-label")
+			.append("p")
+				.text("Pro Football Focus Grade");
+
+		body.append("div")
+				.attr("class", "clearfix");
+
+		d3.csv("https://dl.dropboxusercontent.com/u/18958141/pff-data/pff_niners.csv", function(error, data) {
+
+			var pffData = data.filter(function(element) {return element.year == year});
+
+			x.domain([-150, 280]);
+
+			y.domain(pffData.map(function(d) { return d.category; }));
+
+			var svg = body.append("svg")
+					.attr("width", width + margin.left + margin.right)
+					.attr("height", height + margin.top + margin.bottom)
+				.append("g")
+					.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+			var bars = svg.selectAll("rect")
+					.data(pffData, keys)
+				.enter().append("rect")
+					.attr("class", "bar")
+					.attr("x", 0)
+					.attr("y", function(d) { return y(d.category)})
+					.attr("width", function(d) { return x(d.value); })
+					.attr("height", y.rangeBand());
+
+			svg.append("g")
+					.call(xAxis)
+					.attr("class", "x axis");
+
+			svg.append("g")
+					.call(yAxis)
+					.attr("class", "y axis");
+
+			buttons.on("click", function(d) {
+					update(d);
+					clearInterval(playInterval);
 			});
 
-	body.append("div")
-			.attr("class", "clearfix")
+			var playInterval;
 
-	body.append("div")
-			.attr("class", "top-label category-label")
-		.append("p")
-			.text("football category");
+			playAll.on("click", function() {
 
-	body.append("div")
-			.attr("class", "top-label")
-		.append("p")
-			.text("pro football focus grade");
+					var i = 0;
 
-	body.append("div")
-			.attr("class", "clearfix");
+					playInterval = setInterval(function() {
+						update(buttonYears[i]);
 
-	d3.csv("https://dl.dropboxusercontent.com/u/18958141/pff-data/pff_niners.csv", function(error, data) {
+						i++;
 
-		var pffData = data.filter(function(element) {return element.year == year});
+						if(i > buttonYears.length - 1){
+								clearInterval(playInterval);
+						}
+					}, 700);
+			});
 
-		x.domain([-150, 280]);
+			function update(updateYear) {
 
-		y.domain(pffData.map(function(d) { return d.category; }));
+					d3.select(".selected")
+						.classed("selected", false);
 
-		var svg = body.append("svg")
-				.attr("width", width + margin.left + margin.right)
-				.attr("height", height + margin.top + margin.bottom)
-			.append("g")
-				.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+					buttons
+						.filter(function(d) { return d == updateYear; })
+						.classed("selected", true);	
 
-		var bars = svg.selectAll("rect")
-				.data(pffData, keys)
-			.enter().append("rect")
-				.attr("class", "bar")
-				.attr("x", 0)
-				.attr("y", function(d) { return y(d.category)})
-				.attr("width", function(d) { return x(d.value); })
-				.attr("height", y.rangeBand());
+					pffData = data.filter(function(element) {return element.year == updateYear});
 
-		svg.append("g")
-				.call(xAxis)
-				.attr("class", "x axis");
-
-		svg.append("g")
-				.call(yAxis)
-				.attr("class", "y axis");
-
-		buttons.on("click", function(d) {
-				update(d);
-				clearInterval(playInterval);
+					bars.data(pffData, keys)
+						.transition()
+						.duration(500)
+						.attr("width", function(d) { return x(d.value)
+						});
+			};
 		});
-
-		var playInterval;
-
-		playAll.on("click", function() {
-
-				var i = 0;
-
-				playInterval = setInterval(function() {
-					update(buttonYears[i]);
-
-					i++;
-
-					if(i > buttonYears.length - 1){
-							clearInterval(playInterval);
-					}
-				}, 700);
-		});
-
-		function update(updateYear) {
-
-				d3.select(".selected")
-					.classed("selected", false);
-
-				buttons
-					.filter(function(d) { return d == updateYear; })
-					.classed("selected", true);	
-
-				pffData = data.filter(function(element) {return element.year == updateYear});
-
-				bars.data(pffData, keys)
-					.transition()
-					.duration(500)
-					.attr("width", function(d) { return x(d.value)
-					});
-		};
-	});
-</script>
+	</script>
+</div>
