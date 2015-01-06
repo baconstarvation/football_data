@@ -158,7 +158,7 @@
 					.attr("class", "bar")
 					.attr("x", 0)
 					.attr("y", function(d) { return y(d.category)})
-					.attr("width", function(d) { return x(d.value); })
+					.attr("width", function(d) { return x.domain; })
 					.attr("height", y.rangeBand());
 
 			svg.append("g")
